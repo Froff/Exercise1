@@ -6,30 +6,35 @@ To complete this exercise you will have to use git. Create one or several commit
 When answering the questions, remember to use all the resources at your disposal. Asking the internet isn't a form of "cheating", it's a way of learning.
 
  ### What is concurrency? What is parallelism? What's the difference?
- > *Your answer here*
+ > Concurrency is when two separate processes sharing one cpu core have their operations interwoven in such a a way that they functionally run at the same time. Parallelism is when two processes are actually running at the same time (for example in two separate cores on a cpu).
  
  ### Why have machines become increasingly multicore in the past decade?
- > *Your answer here*
+ > Having multiple cores allows for more computation without increasing the cpu clock frequency. As a rule of thumb, increasing the clock frequency by a factor `a` increases the power consumption of a cpu by `a^3`, as one needs to increase the voltage to increase the frequency. This leads to having more cores instead of higher frequencies being much more power efficient, which is critical in mobile and IoT systems which run on batteries. The rise of the smartphone probably led to a bigger push for multicore machines in the last decade.
  
  ### What kinds of problems motivates the need for concurrent execution?
  (Or phrased differently: What problems do concurrency help in solving?)
- > *Your answer here*
+ > Concurrent execution is useful because you often want your system to do several things seemingly at once, while being sure that one thing going wrong wont destroy other functionality. If the processes are running serially, one process hanging or crashing will stop all other processes from running. Essentially, processes which are conceptually independent should also be independent in code.
  
  ### Does creating concurrent programs make the programmer's life easier? Harder? Maybe both?
  (Come back to this after you have worked on part 4 of this exercise)
  > *Your answer here*
  
  ### What are the differences between processes, threads, green threads, and coroutines?
- > *Your answer here*
- 
+ > Paraphrased from Robert S. Barnes on StackOverflow, who in return got it from Tanenbaum's *Modern Operating Systems 3e*:
+ > A process has its own address space with code and data, and its own resources to work with. A process can have one or more threads, which can share these resources along with the address space.
+ > Paraphrased from Wikipedia's article *Green threads*:
+ > Green threads are threads that execute in a virtual machine or runtime library, instead of run and managed natively by a kernel.
+ > Paraphrased from Wikipedia's article *Coroutine*:
+ > A coroutine is a part of a program which can yield to another part of the program (stops running and lets that part run), while still retaining its state so execution can resume when some part of the program yields back.
+
  ### Which one of these do `pthread_create()` (C/POSIX), `threading.Thread()` (Python), `go` (Go) create?
- > *Your answer here*
+ > They create threads
  
  ### How does pythons Global Interpreter Lock (GIL) influence the way a python Thread behaves?
- > *Your answer here*
+ > Because of the GIL, python cannot run threads in parallel (only concurrently), and therefore cannot utilize a multicore CPU.
  
  ### With this in mind: What is the workaround for the GIL (Hint: it's another module)?
- > *Your answer here*
+ > There is a module for python named `multiprocessing` which seems to be made for sidestepping this issue.
  
  ### What does `func GOMAXPROCS(n int) int` change? 
- > *Your answer here*
+ > The number of CPU cores which can be engaged in executing the user's go code at a time. So calling this with `n=1` will remove parallelism (concurrency will still be possible however).
