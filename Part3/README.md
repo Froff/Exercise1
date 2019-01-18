@@ -17,7 +17,7 @@ When answering the questions, remember to use all the resources at your disposal
  
  ### Does creating concurrent programs make the programmer's life easier? Harder? Maybe both?
  (Come back to this after you have worked on part 4 of this exercise)
- > *Your answer here*
+ > As with all new tools one learns in programming, it can be a bit time consuming and frustrating in the beginning. However, after having gone through that, one now has a very effective and useful tool. In this exercise, we have not yet learned to use mutexes or other locks to make sure two threads aren't reading from/writing to a resource in the wrong order, so the result is disappointing. In the future, however, we will have the knowlegde to avoid these problems, making our life easier by creating concurrent programs.
  
  ### What are the differences between processes, threads, green threads, and coroutines?
  > Paraphrased from Robert S. Barnes on StackOverflow, who in return got it from Tanenbaum's *Modern Operating Systems 3e*:
